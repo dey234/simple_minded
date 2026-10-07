@@ -1,6 +1,3 @@
-# simple_minded
-This contains all my simple projects for practice purposes.
-
 ## Run the web calculator
 
 Install Flask in your environment, then start the app from this folder:
