@@ -1,8 +1,10 @@
 
 from flask import Flask, request, render_template_string
 
+# Create the Flask app that serves the calculator web page and handles form submissions.
 app = Flask(__name__)
 
+# This HTML template defines the calculator's layout, fields, button, and result display.
 PAGE = """
 <!doctype html>
 <html lang="en">
@@ -125,20 +127,25 @@ PAGE = """
 </html>
 """
 
+# Route for the home page: display the form and process the submitted calculation.
 @app.route("/", methods=["GET", "POST"])
 def index():
+    # Keep track of the entered values and the current math symbol for the page display.
     num1 = num2 = result = ""
     op = "+"
 
+    # When the form is submitted, read the values and perform the selected calculation.
     if request.method == "POST":
         num1 = request.form.get("num1", "")
         num2 = request.form.get("num2", "")
         op = request.form.get("op", "+")
 
         try:
+            # Convert the text inputs into numbers so arithmetic can be done safely.
             a = float(num1)
             b = float(num2)
 
+            # Apply the correct operator to the two numbers.
             if op == "+":
                 result = a + b
             elif op == "-":
@@ -146,6 +153,7 @@ def index():
             elif op == "*":
                 result = a * b
             elif op == "/":
+                # Prevent division by zero and show a helpful error instead.
                 if b == 0:
                     result = "Error: cannot divide by zero"
                 else:
@@ -153,9 +161,12 @@ def index():
             else:
                 result = "Error: choose a valid operation"
         except ValueError:
+            # Tell the user the values entered are not valid numbers.
             result = "Error: enter valid numbers"
 
+    # Render the HTML page again with the entered values and computed result.
     return render_template_string(PAGE, num1=num1, num2=num2, op=op, result=result)
 
+# Run the local web server when this file is executed directly.
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
