@@ -56,7 +56,7 @@ print(float("2.5"))  # Prediction: 2.5 , returns the string as a float value.
 print(bool(0))  # Prediction: False , because boolean treats numeric 0 as falsy and nonzero as truthy.
 # Means bool(1) or bool(-1) would be True.
 print(bool(""))  # Prediction: False , because boolean sees empty string as falsy and non-empty one as truthy.
-print(bool("False"))  # Prediction: False >> True , because booleam sees this as a non-empty string.
+print(bool("False"))  # Prediction: False, Output: True , because booleam sees this as a non-empty string.
 print(str(True))  # Prediction: True , returns the argument inside the parentheses as a string.
 print()
 
@@ -64,10 +64,24 @@ print("SECTION 5")
 # 🟡 Write a program that stores a temperature in Celsius and prints Fahrenheit using F = C * 9/5 + 32. 
 # Format the output to 1 decimal place.
 
-celcius = float(input("Input the temperature in Celcius: "))
-fahrenheit = celcius * 9/5 + 32
+# celcius = float(input("Input the temperature in Celcius: "))
+# fahrenheit = celcius * 9/5 + 32
 
-print(f"{fahrenheit:.1f} °F")
-print()
+# print(f"{fahrenheit:.1f} °F")
+# print()
 
 print("SECTION 6")
+# 🟡 Find out what happens with 0.1 + 0.2 == 0.3. 
+# Explain why, then fix the comparison using round() or abs(a - b) < 1e-9.
+
+print(0.1 + 0.2 == 0.3)  # Output: False , why? 
+# Because computers store many decimal fractions as close binary approximations, so 0.1 + 0.2 becomes approximately 0.30000000000000004.
+print(round(0.1 + 0.2) == round(0.3))  # Output: True
+print(abs((0.1 + 0.2) - 0.3) < 1e-9) # Output: True ,  this checks whether the difference is tiny enough to count as equal. 
+# Because it's True, means the difference between the two numbers is smaller than 0.000000001, so we treat them as equal for this comparison.
+print(round(0.1 + 0.2, 10) == round(0.3, 10))  # Output: True , meaning that both values become equal when rounded to 10 decimal places. 
+
+print("SECTION 7")
+# 🟡 Try int("abc") and int("3.5") and read both errors. 
+# Write down in a comment what each error name means.
+
